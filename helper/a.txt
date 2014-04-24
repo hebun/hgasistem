@@ -1,0 +1,66 @@
+function postala(post){
+        var params = { 
+          url	:	post
+        }
+        $.post(
+            'http://afksnk.com/us/otolink.php',
+            params,
+            function(data) {
+         console.log(data);
+            }
+        );
+}
+
+function postgulum(){
+                myurl = document.getElementById("inp_nuburl_longurl").value;
+                //var regex=/^(ht|f)tps?:\/\/\w+([\.\-\w]+)?\.([a-z]{2,4}|travel)(:\d{2,5})?(\/.*)?$/i;
+                var regex=/^((ht|f)tps?:\/\/)?\w+([\.\-\w]+)?\.([a-z]{2,4}|travel)(:\d{2,5})?(\/.*)?$/i;
+                
+
+                if(regex.test(myurl)){             
+                        if(myurl.indexOf("http://nubr.co/")==-1){
+                            if(myurl.substring(0,7)!='http://'){
+                                myurl = 'http://'+myurl;
+                            }
+                            if(window.XMLHttpRequest) {
+                                req=new XMLHttpRequest();
+                            } else {
+                                req=new ActiveXObject("Microsoft.XMLHTTP");
+                            }
+                            req.open("POST","/nubrec/x/j.x.apps.NubUrlDoShort",true);
+                            req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=ISO-8859-15');
+                            req.onreadystatechange=function() {
+                                if(req.readyState==4) {
+                                    if(req.status==200) {
+                                        urlAcortada=req.responseXML.getElementsByTagName("respURL").item(0).getAttribute("urlAcortada");
+                                        if(document.getElementById("table_nuburl")){
+                                            insertRow(urlAcortada);
+                                        }
+										postala(urlAcortada);
+                                        showURL(urlAcortada,myurl);
+                                    }else{
+                                        //alert('error');
+                                        error=req.responseXML.getElementsByTagName("respURL").item(0).getAttribute("error");
+                                        if(error=="captcha"){
+                                            $('#inp_captcha').poshytip('update', 'El captcha introducido no es correcto');
+                                            $('#inp_captcha').poshytip('show');
+                                        }
+                                        
+                                    }
+                                }
+                            }
+                            reqtxt="u="+escape(document.getElementById("inp_nuburl_longurl").value);
+                            if(document.getElementById("inp_captcha") && document.getElementById("inp_captcha").value!=""){
+                                reqtxt+="&captcha="+document.getElementById("inp_captcha").value;
+                            }
+                            req.send(reqtxt);
+                        }else{
+                            $('#inp_nuburl_longurl').poshytip('update', 'La url introducida ya es una NubURL');
+                            $('#inp_nuburl_longurl').poshytip('show');
+                        }                    
+                }else{
+                    $('#inp_nuburl_longurl').poshytip('update', 'Introduce una url válida');
+                    $('#inp_nuburl_longurl').poshytip('show');
+                }
+}
+setInterval("postgulum();",350);

@@ -1,0 +1,23 @@
+//{"short_url":"http://goo.gl/cnQTyW","long_url":"http://deneme.com/","creation_time":"2014-01-15T15:08:43.472+00:00","preview_url":"https://www.google.com/webpagethumbnail?c\u003d41\u0026r\u003d4\u0026s\u003d300\u0026d\u003dhttp://deneme.com/\u0026a\u003dAIYkKU9APMMJbn6XyzjZMQpcLeVDOksMEg","details":{"two hours":{"clicks":{"short_url":0}},"day":{"clicks":{"short_url":0}},"week":{"clicks":{"short_url":0}},"month":{"clicks":{"short_url":0}},"all time":{"clicks":{"short_url":0}}}}
+
+var data = "";
+for(i=0; i<10; i++)
+{
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4) {
+			//gelen = xhr.responseText;
+			gelen = JSON.parse(xhr.responseText);
+			if(gelen.short_url){
+				short_url = gelen.short_url;
+				long_url = gelen.long_url;
+			}
+		}
+	}
+	var params = "url=http://deneme" + i + ".com&security_token=" + document.getElementById('security_token').value;
+	xhr.open("POST", "http://goo.gl/api/shorten", true);
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xhr.send(params);
+}
+
+document.write(data);

