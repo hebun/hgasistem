@@ -1,6 +1,6 @@
 <?
-mysql_connect('localhost', 'root', '2882');
-mysql_select_db('afksnkdb2');
+mysql_connect('localhost', 'prolxjpp_xxx', 'shedower83');
+mysql_select_db('prolxjpp_xxx');
 mysql_query("SET NAMES 'UTF8'");
 mysql_query("SET character_set_connection = 'UTF8'");
 mysql_query("SET character_set_client = 'UTF8'");

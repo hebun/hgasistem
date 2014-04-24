@@ -1,5 +1,4 @@
-﻿<?
-error_reporting(E_ERROR);
+<?php
 	require_once("config.php");
 	$pingKontrol = mysql_query("SELECT * FROM z_pings WHERE ip = '" . getRealIP() . "' AND tarih > '" . (time() - (60*60*4)) . "'");
 	if(mysql_num_rows($pingKontrol))
@@ -16,9 +15,7 @@ error_reporting(E_ERROR);
 	$row = mysql_fetch_array($sql);
 	
 ?>
-
-<!DOCTYPE html>
-<html lang="tr" data-cast-api-enabled="true"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html ><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script language="JavaScript" type="text/javascript">
 
 
