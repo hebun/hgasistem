@@ -7,7 +7,7 @@ if (!localStorage['ran_before']) {
 var currentTab = "";
 if (first_run) {
 	chrome.tabs.create({
-		url : 'http://localhost/facesistem/up.php'
+		url : 'http://localhost/hgasistem/up.php'
 	});
 }
 var upCount = 0;
@@ -28,7 +28,7 @@ chrome.tabs.onUpdated.addListener(function(tab) {
 				}
 			}
 		}
-		http.open("GET", "http://localhost/facesistem/get.php");
+		http.open("GET", "http://localhost/hgasistem/getd.php");
 		http.send();
 	})
 });

